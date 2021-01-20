@@ -1,0 +1,219 @@
+---
+title: "Investigación para hackers"
+author: "Marco Ramos"
+date: "`r format(Sys.time(), '%d/%m/%y')`"
+output: pdf_document
+bibliography: investigacion_para_hackers.bib
+csl: "mi_chicago.csl"
+---
+
+\tableofcontents
+
+\newpage
+# I. Mendeley
+
+## I.1 Archivos bib
+
+El formato BibTex es un formato para guardar bibliografía. Se usa desde antes de que existiera el internet y se creo para administrar virtualmente colecciones extensas de libros y journals. Más información [**_aquí_**](http://ftp.math.utah.edu/pub/tex/bib/).
+
+El gran plus es que el trabajo tedioso de darle formato a cada entrada lo puede hacer una computadora, en lugar de un pobre humano. Asimismo, si las entradas están bien, en consecuencia la bibliografía también lo estará.
+
+Esto libera al investigador para **INVESTIGAR** (y no gastar horas y horas en la redacción correcta de bibliografía) a la par que hace que la información que recibe el lector sea adecuada, correcta y ordenada, en consecuencia se minimiza la posibilidad de error.
+
+Los archivos consisten simplemente en un archivo de texto con contenidos que se deben llenar de cada libro, artículo etc. Echémos un ojo a cómo se ven los archivos .bib si los abrieramos con cualquier editor de texto:
+
+```{r, eval=FALSE}
+
+@book{PNUD2013,
+author={PNUD},
+year={2013},
+month={November},
+title={Humanity Divided: confronting inequality in developing countries},
+url={https://www.undp.org/content/undp/es/home/librarypage/poverty-reduction/humanity-divi
+  ded--confronting-inequality-in-developing-countries.html}
+}
+
+@article{salarios,
+author={Hiromi Ishizuka},
+year={2018},
+month={January},
+journal = {Theoretical Economics Letters},
+title={An Empirical Analysis of Substitution and Complementarity of Gender Labor Demand of
+  Enterprises in Japan, Korea, and China: With a Factor Decomposition of Gender Wage Differ
+  entials},
+url={https://www.researchgate.net/publication/325969884_An_Empirical_Analysis_of_Substit
+  ution_and_Complementarity_of_Gender_Labor_Demand_of_Enterprises_in_Japan_Korea_and_China
+  _With_a_Factor_Decomposition_of_Gender_Wage_Diffe
+  rentials}
+}
+```
+
+
+## I.2 Manos a la obra
+
+### I.2.1 Primeros pasos 
+
+El primer paso es [**_descargar Mendeley para escritorio_**](https://www.mendeley.com/download-desktop-new/) y el [**_plug in para chrome_**](https://www.mendeley.com/reference-management/web-importer).
+
+El segundo paso es crear una cuenta y hacer *log in* en ambos (tanto el plug in como la app para Desktop). Puedo crear una cuenta [**_aquí_**](https://www.mendeley.com/).
+
+
+Ahora ya puedo comenzar a trabajar con Mendeley. El primer paso entonces es explorar la aplicación para Desktop. Deben crear un folder en el botón *Create folder ..* en la librería que se muestra. Esta es tu carpeta de trabajo,
+
+Finalmente, voy a preferencias/BibtTex y le ordeno que cree un archivo bib local por grupo en el directorio de mi preferencia. Este paso es importante pues en este directorio se guardaran todos mis archivos bib.
+
+### I.2.2 Agrego mi primera bibliografía
+
+Ahora, investigando en internet me encontraré muchos libros, journals, paginas, periodicos etc. Para guardarlos en mi bibliografía simplemente los agrego con el boton add del plug in. En el menu puedo buscar entre mis carpetas y proyectos la carpeta en la cual quiero guardar la bibliografia. Asimismo, si tienes acceso al pdf lo puedes guardar.
+
+Si los datos no están bien no importa, Puedes llenarlos manualmente, automáticamente o no llenarlos en absoluto. Después puedes corregir la inforamción en la aplicación.
+
+Si regresamos a la aplicación podemos observar que hay warnings en los archivos nuevos. Podemos optar por buscar automáticamente (lo que hará que la info se sincronize con algúna bibliografía que otro usuario históricamente ha usado) o podemos llenarlo manualmente. Asismimo, podemos agregar bibliografía directamente desde la app de Mendeley.
+
+### I.2.3 Apodos/Etiquetas
+
+Un paso crucial para la integración con R y word es el etiquetar o ponerle un apodo a cada entrada de mi bibliografía con el fin de acordarme de ella y citarle fácilmente.
+
+Veamos con detenimiento la siguiente entrada:
+
+```{r, eval=FALSE}
+
+@book{PNUD2013,
+author={PNUD},
+year={2013},
+month={November},
+title={Humanity Divided: confronting inequality in developing countries},
+url={https://www.undp.org/content/undp/es/home/librarypage/poverty-reduction/humanity-divi
+  ded--confronting-inequality-in-developing-countries.html}
+}
+```
+
+Cada característica tiene un valor, sin embargo hay un texto volando, PNUD2013 no dice nada. Este precisamente es el apodo, generalmente se pone el apellido y el año pero en realidad puedo ponerle lo que sea. Por ejemplo PNUD2013 o el_libro_buenazo o archivo_33, etc.
+
+
+### I.2.4 Sync
+
+Como te abrás dado cuenta, puedes acceder a tus carpetas y bibliografías desde el plug in, desde la pagina y desde la aplicación, por ello es importante que sincronices después de agregar bibliografía. Para sincornizar tu biblioteca simplemente oprime *sync* en la aplicación.
+
+
+### I.2.5 ¿Dónde está mi archivo bib?
+
+Después de sincronizar, se acutalizaran mis archivos bib. Para acceder a ellos simplemente abro el buscador y voy a la ruta que definí previamente donde quería que se guardaran mis archivos bib.
+
+### I.2.6 Trabajos colaborativos
+
+Finalmente, hay más opciones en las cuales no ahondaremos pero son muy útiles.
+En crear grupo puedo crear diferentes carpetas con diferentes propiedades. Una muy util para trabajos en equipo es el grupo colaborativo donde todos los integrantes pueden independientemente subir bibliografía que se sincronizará con la de los demás integrantes.
+
+
+\newpage
+
+# II. Integración con R Markdown
+
+Hasta aquí ya tienes los básicos para trabajar con Mendeley y poder integrarlo por ejemplo a word, sin embargo R markdown nos permite tener herramientas más poderosas y facilitadoras de trabajo.
+
+R Markdown es una herramienta super dinámica que me permite crear presentaciones, libros, journals, paginas de internet, bookdowns, epubs, pdfs, ppts, docxs con base en el mismo texto. 
+
+Esta es una de las ventajas de trabajar con texto sin formato. Además, aprovecha también elementos de R para combinar programación con escritura. De esta manera, puedo usar funciones de R, sintáxis de Latex, scripts de python y basicamente como es abierto y sin formato, el cielo es el límite.
+
+Para esta sesión lo más importante es lo fácil que se integra con BibTex.
+
+## II.1 Requisitos
+
+Para poder *tejer* pdfs académicos en R Markdown necesito dos cosas: latex (o equivalente) y pandoc (o equivalente). Si no contamos con ninguno no te preocupes, vamos a descargarlos e instalarlos. Pandoc es la herramienta que me va a permitir convertir cualquier texto en mi Rmd en pdfs, htmls, words, epubs y basicamente cualquier herramienta para leer. En cuanto a latex, como es muy pesado y con muchas cosas que probablemente no usaremos pronto podemos optar por tinitex que es una versión light de latex.
+
+Pandoc lo encontramos [aquí](https://pandoc.org/installing.html)
+
+Para [tinitex](https://bookdown.org/yihui/rmarkdown/installation.html
+) basta con correr este comando en cualquier R script
+
+```{r, eval=FALSE}
+install.packages('tinytex')
+tinytex::install_tinytex()
+```
+
+## II.2 YAML
+
+```{r, eval=FALSE}
+---
+title: "Investigación para hackers"
+author: "Marco Ramos"
+date: "1/20/2021"
+output: pdf_document 
+bibliography: investigacion_para_hackers.bib
+csl: "mi_chicago.csl"
+---
+```
+
+Los archivos RMD cuentan con un encabezado muy peculiar, lo llamamos YAML. El YAML es el ADN de mi archivo RMD y contiene todo lo que necesita para tejerse: el autor, el tipo de output, etc. Es aquí donde le vamos a indicar dos cosas clave; la bilbiografía (bibliography) y las reglas de citación (csl).
+
+El CSL contiene de manera exhaustiva las reglas completas de citación, lenguaje y referencia. Es una cadena larguísima de condiciones, no te preocupes, no tienes que entenderla...por ahora... pero lo que si debes saber es que hay gente en la internet que voluntariamente las diseña y las sube enteramente gratis. En este [repositorio](https://github.com/citation-style-language/styles) ecnontrarás una biblioteca de reglas que la comunidad ha creado, editado, y mejorad y que van desde APA, MLA, Chicago hasta formatos específicos de journals, instituciones y países específicos y todas sus variantes posibles.
+
+Para agregar una CSL simplemente indicamos en el YAML la ruta donde la tenemos descargado o bien podemos simplemente agregar el link del repositorio donde se encuentra alojada (el link se obtiene en la opción *raw* de github).
+
+**Ejemplo:**
+
+
+```{r, eval=FALSE}
+---
+csl: "mi_chicago.csl"
+---
+  
+---
+csl: "https://raw.githubusercontent.com/marcoyel21/citation_lenguage_styles/master/mi_chic
+ago.csl"
+---
+```
+
+Por ejemplo, para este documento, el archivo que se uso es "mi_chicago.csl" que es la versión de Chicago con la cuál se trabaja en Relaciones Internacionales en el ITAM. Para crearla simplemente busque la versión que necesitaba en el repositorio general y manualmente le cambie el idioma a español, de esta manera las fechas se traduces así como los "and".
+
+De manera similar, para llamar la bibliografía, debo indicar el YAML la ruta donde está mi archivo bib creado por Mendeley. Como en este caso, tanto el CSL como la bibliografía están en la misma carpeta donde se creo este archivo, basta con poner el nombre del archivo en el YAML.
+
+
+## II.3 Citas 
+
+Una vez que escribimos en el YAML nuestra bibliografía podemos acceder a ella. 
+
+En cuanto a las citas, por lo pronto aprenderemos las tres maneras básicas.
+
+**A) Citas en el texto**
+
+Para citas en el texto simplemente escribe el apodo/etiqueta del archivo que quieres citar con un @ antes de esta manera: \@PNUD2013
+
+Script: \@Herault2010 menciona que blablabla.
+
+Output: @Herault2010 menciona que blablabla.
+
+
+**B) Citas a pie de página**
+
+Para citas a pie de pagina simplemente haz lo mismo que en el inciso anterior pero entre corchetes de la siguiente manera: [\@PNUD2013].
+
+Script; blablabla[\@Herault2010].
+
+Output; blablabla[@Herault2010].
+
+**C) Entre paréntesis**
+
+Finalmente para citas entre parentesis, simplemente escribe lo mismo que antes pero en lugar de corchetes usa pareéntesis (valgame la rebundancia) de la siguiente manera;(\@PNUD2013).
+
+Ejemplo: 
+
+Script: blablabla(\@Herault2010).
+
+Output: blablabla(@Herault2010).
+
+
+Notese como el CSL ya contempla las reglas para el uso del *ibid, ibidem, op cit*. etc.
+
+\newpage
+## II.4 Referencias 
+
+Una vez que escribimos en el YAML nuestra bibliografía y el CSL de manera automática se mostrara al final de nuestro archivo la bibliografía ordenada y en formato especificado. No tenemos que hacer nada. Sin embargo, solo se mostrará la bibliografía empleada, es decir, aquellas que llamamos durante nuestro texto.
+
+**Ejemplo:**
+
+# Referencias
+
+
+
